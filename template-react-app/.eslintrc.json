@@ -1,0 +1,126 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
+  "plugins": [
+    "react",
+    // "@typescript-eslint",
+    "react-hooks",
+    "effector",
+    // "simple-import-sort",
+    "unused-imports",
+    "dirs",
+    "unicorn"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:effector/recommended",
+    "plugin:effector/scope",
+    "plugin:import/recommended",
+    "plugin:prettier/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier"
+  ],
+  "rules": {
+    // Eslint common
+    "no-unused-vars": "warn",
+    "no-console": "warn",
+    "no-multi-spaces": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    // Unused imports
+    "unused-imports/no-unused-imports": "error",
+    // Simple import sort
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^(react)(\\/.*|$)", "^next"],
+          ["^@?\\w"],
+          ["^~(src)(/.*|$)"],
+          ["^~(mocks)(/.*|$)"],
+          ["^\\."],
+          ["(gif|jpe?g|tiff?|png|webp|bmp)$"],
+          ["(css)$"]
+        ]
+      }
+    ],
+    "simple-import-sort/exports": "warn",
+    // Unicorn
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-null": "off",
+    "unicorn/explicit-length-check": "off",
+    "unicorn/no-array-callback-reference": "off",
+    "unicorn/no-array-reduce": "off",
+    "unicorn/prefer-module": "off",
+    // Dirs
+    "dirs/dirnames": [
+      2,
+      {
+        "pattern": "^[a-z-]+$"
+      }
+    ],
+    // React
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "ignoreCase": true,
+        "shorthandFirst": true,
+        "reservedFirst": true,
+        "multiline": "last"
+      }
+    ],
+    "react/jsx-curly-brace-presence": ["error", "never"],
+    "react/jsx-boolean-value": ["error", "never"],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx", ".jsx"]
+      }
+    ],
+    // TypeScript
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-var-requires": "off",
+    // JSX-a11y
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ]
+  }
+}
