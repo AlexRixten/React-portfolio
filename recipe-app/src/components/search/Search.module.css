@@ -1,0 +1,12 @@
+.wrapper{
+    @apply w-full relative;
+}
+
+.wrapper input{
+    @apply text-white text-2xl py-4 px-12 rounded-2xl border-0 outline-0 w-full;
+    background: linear-gradient(35deg, #494949, #313131);
+}
+
+.wrapper svg{
+    @apply absolute text-white translate-x-full -translate-y-1/2 left-0 top-1/2;
+}
