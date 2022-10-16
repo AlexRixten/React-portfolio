@@ -1,8 +1,7 @@
 import React from "react";
-import { queryClient } from "../index";
+import { queryClient } from "../../index";
 
-import { Slider } from "../components/slider/Slider";
-import { Category } from "../components/category/Category";
+import { Slider } from "../../components/slider/Slider";
 
 export const Home = () => {
   const popular = queryClient.getQueryData(["popular"]);

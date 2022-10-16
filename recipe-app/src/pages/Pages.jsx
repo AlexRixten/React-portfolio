@@ -3,8 +3,7 @@ import { useQueries } from "@tanstack/react-query";
 import { Routes, Route } from "react-router-dom";
 import { fetchPopular, fetchVeggie, fetchCuisine } from "../api/apiRecipe";
 
-import { Home } from "./Home";
-import { Cuisine } from "./Cuisine";
+import { MAIN_ROUTES } from "../routes/routes";
 
 export const Pages = () => {
   useQueries({
@@ -18,8 +17,9 @@ export const Pages = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cuisine/:type" element={<Cuisine />} />
+        {MAIN_ROUTES.map((route, i) => (
+          <Route key={i} path={route.path} element={route.component} />
+        ))}
       </Routes>
     </>
   );
