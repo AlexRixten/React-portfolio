@@ -4,7 +4,7 @@ import "@splidejs/react-splide/css";
 
 import styles from "./Slider.module.css";
 
-export const Slider = ({ title, data, perPage }) => {
+export const Slider = ({ title, data, perPage, gap }) => {
   return (
     <div>
       <div className={styles.wrapper}>
@@ -15,7 +15,7 @@ export const Slider = ({ title, data, perPage }) => {
             arrows: false,
             pagination: false,
             drag: "free",
-            gap: "5rem",
+            gap,
           }}
         >
           {data?.map((recipe) => (

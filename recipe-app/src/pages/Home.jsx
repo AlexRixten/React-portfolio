@@ -10,8 +10,13 @@ export const Home = () => {
 
   return (
     <div>
-      <Slider title={"Our Veggie Picks"} data={veggie} perPage={3} />
-      <Slider title={"Popular Picks"} data={popular} perPage={4} />
+      <Slider
+        title={"Our Veggie Picks"}
+        data={veggie}
+        perPage={3}
+        gap={"3rem"}
+      />
+      <Slider title={"Popular Picks"} data={popular} perPage={4} gap={"2rem"} />
     </div>
   );
 };
