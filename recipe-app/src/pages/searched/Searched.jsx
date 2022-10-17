@@ -3,6 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { searchRecipe } from "../../api/apiRecipe";
 
+import { CardItem } from "../../components/cardItem/CardItem";
+
+import styles from "../../static/css/pages/Pages.module.css";
+
 export const Searched = () => {
   const { searchName } = useParams();
   const { data, isSuccess } = useQuery(
@@ -12,14 +16,24 @@ export const Searched = () => {
       enabled: !!searchName,
     }
   );
-  if (!data?.results?.length) {
-    return <p>Пусто</p>;
+
+  if (isSuccess && data.results.length === 0) {
+    return (
+      <div className={styles.wrapper}>
+        <h1 className={styles.title}>Страница пуста</h1>
+      </div>
+    );
   }
+
   return (
-    <div>
-      {data?.results?.map((item) => (
-        <p>{item.title}</p>
-      ))}
-    </div>
+    <>
+      {isSuccess && (
+        <div className={styles.wrapper}>
+          {data.results.map((item) => (
+            <CardItem key={item.id} item={item} />
+          ))}
+        </div>
+      )}
+    </>
   );
 };

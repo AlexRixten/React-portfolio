@@ -5,7 +5,8 @@ import { useParams } from "react-router-dom";
 
 import { fetchCuisine } from "../../api/apiRecipe";
 
-import styles from "./Cuisine.module.css";
+import styles from "../../static/css/pages/Pages.module.css";
+import { CardItem } from "../../components/cardItem/CardItem";
 
 export const Cuisine = () => {
   const { type } = useParams();
@@ -29,10 +30,7 @@ export const Cuisine = () => {
       {isSuccess && (
         <div className={styles.wrapper}>
           {cuisine.results.map((item) => (
-            <div key={item.id}>
-              <img className={styles.image} src={item.image} alt={item.title} />
-              <h4 className={styles.title}>{item.title}</h4>
-            </div>
+            <CardItem key={item.id} item={item} />
           ))}
         </div>
       )}

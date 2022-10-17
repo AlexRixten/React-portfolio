@@ -9,9 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 export const Search = () => {
   const navigate = useNavigate();
-  const cuisine = queryClient.getQueryData(["cuisine"]);
-
-  console.log(cuisine);
 
   const formik = useFormik({
     initialValues: { search: "" },
