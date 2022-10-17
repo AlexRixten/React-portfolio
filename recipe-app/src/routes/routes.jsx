@@ -36,4 +36,8 @@ export const MAIN_ROUTES = [
     path: "/cuisine/:type",
     component: <Cuisine />,
   },
+  {
+    path: "/cuisine/:type",
+    component: <Cuisine />,
+  },
 ];

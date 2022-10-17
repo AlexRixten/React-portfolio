@@ -35,7 +35,7 @@ export const fetchCuisine = async (name) => {
 
 export const searchRecipe = async (name) => {
   const res = await apiRequest({
-    url: `/recipes/complexSearch${apiKey}cuisine=${name}`,
+    url: `/recipes/complexSearch${apiKey}query=${name}`,
   });
   return res;
 };
