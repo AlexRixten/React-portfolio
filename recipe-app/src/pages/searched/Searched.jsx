@@ -6,12 +6,20 @@ import { searchRecipe } from "../../api/apiRecipe";
 export const Searched = () => {
   const { searchName } = useParams();
   const { data, isSuccess } = useQuery(
-    ["contact", searchName],
+    ["searched", searchName],
     () => searchRecipe(searchName),
     {
       enabled: !!searchName,
     }
   );
-  console.log(data);
-  return <div>Searched</div>;
+  if (!data?.results?.length) {
+    return <p>Пусто</p>;
+  }
+  return (
+    <div>
+      {data?.results?.map((item) => (
+        <p>{item.title}</p>
+      ))}
+    </div>
+  );
 };

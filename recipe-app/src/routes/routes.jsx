@@ -3,6 +3,7 @@ import { GiNoodles, GiChopsticks } from "react-icons/gi";
 
 import { Home } from "../pages/home/Home";
 import { Cuisine } from "../pages/cuisine/Cuisine";
+import { Searched } from "../pages/searched/Searched";
 
 export const ROUTES_CATEGORY = [
   {
@@ -37,7 +38,7 @@ export const MAIN_ROUTES = [
     component: <Cuisine />,
   },
   {
-    path: "/cuisine/:type",
-    component: <Cuisine />,
+    path: "/searched/:searchName",
+    component: <Searched />,
   },
 ];
