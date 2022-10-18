@@ -1,0 +1,11 @@
+.logo{
+    @apply decoration-0 text-2xl font-normal; 
+}
+
+.nav{
+    @apply py-16 px-0 flex justify-start items-center;
+}
+
+.nav svg{
+    @apply text-3xl;
+}
