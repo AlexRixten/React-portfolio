@@ -4,7 +4,7 @@ import { queryClient } from "../../index.js";
 
 import { FaSearch } from "react-icons/fa";
 
-import styles from "./Search.module.css";
+import styles from "../../static/css/components/Search.module.css";
 import { useNavigate } from "react-router-dom";
 
 export const Search = () => {
@@ -18,13 +18,15 @@ export const Search = () => {
   });
   return (
     <form className={styles.wrapper} onSubmit={formik.handleSubmit}>
-      <FaSearch />
-      <input
-        type="text"
-        id="search"
-        onChange={formik.handleChange}
-        value={formik.values.search}
-      />
+      <label className={styles.label}>
+        <FaSearch />
+        <input
+          type="text"
+          id="search"
+          onChange={formik.handleChange}
+          value={formik.values.search}
+        />
+      </label>
     </form>
   );
 };

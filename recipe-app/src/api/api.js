@@ -4,7 +4,7 @@ export const Api = axios.create({
   baseURL: "https://api.spoonacular.com",
 });
 
-export const apiKey = `?apiKey=709185be7cf44893ae217ca82214f9e9&`;
+export const apiKey = `?apiKey=709185be7cf44893ae217ca82214f9e9`;
 
 export const apiRequest = async ({
   type = "GET",

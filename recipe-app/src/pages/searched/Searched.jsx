@@ -6,6 +6,7 @@ import { searchRecipe } from "../../api/apiRecipe";
 import { CardItem } from "../../components/cardItem/CardItem";
 
 import styles from "../../static/css/pages/Pages.module.css";
+import { Spinner } from "../../components/spinner/Spinner";
 
 export const Searched = () => {
   const { searchName } = useParams();
@@ -18,11 +19,7 @@ export const Searched = () => {
   );
 
   if (isSuccess && data.results.length === 0) {
-    return (
-      <div className={styles.wrapper}>
-        <h1 className={styles.title}>Страница пуста</h1>
-      </div>
-    );
+    return <Spinner />;
   }
 
   return (

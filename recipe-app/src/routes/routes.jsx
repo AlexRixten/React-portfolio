@@ -43,7 +43,7 @@ export const MAIN_ROUTES = [
     component: <Searched />,
   },
   {
-    path: "/recipe/:name",
+    path: "/recipe/:id",
     component: <Recipe />,
   },
 ];

@@ -6,7 +6,7 @@ export const fetchPopular = async () => {
     return JSON.parse(check);
   } else {
     const res = await apiRequest({
-      url: `/recipes/random${apiKey}number=9`,
+      url: `/recipes/random${apiKey}&number=9`,
     });
     localStorage.setItem("popular", JSON.stringify(res.recipes));
     return res.recipes;
@@ -19,23 +19,30 @@ export const fetchVeggie = async () => {
     return JSON.parse(check);
   } else {
     const res = await apiRequest({
-      url: `/recipes/random${apiKey}number=9&tags=vegetarian`,
+      url: `/recipes/random${apiKey}&number=9&tags=vegetarian`,
     });
     localStorage.setItem("veggi", JSON.stringify(res.recipes));
     return res.recipes;
   }
 };
 
+export const fetchRecipe = async (name) => {
+  const res = await apiRequest({
+    url: `/recipes/${name}/information${apiKey}`,
+  });
+  return res;
+};
+
 export const fetchCuisine = async (name) => {
   const res = await apiRequest({
-    url: `/recipes/complexSearch${apiKey}cuisine=${name}`,
+    url: `/recipes/complexSearch${apiKey}&cuisine=${name}`,
   });
   return res;
 };
 
 export const searchRecipe = async (name) => {
   const res = await apiRequest({
-    url: `/recipes/complexSearch${apiKey}query=${name}`,
+    url: `/recipes/complexSearch${apiKey}&query=${name}`,
   });
   return res;
 };

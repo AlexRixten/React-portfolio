@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import { ROUTES_CATEGORY } from "../../routes/routes";
 
-import styles from "./Category.module.css";
+import styles from "../../static/css/components/Category.module.css";
 
 export const Category = () => {
   return (

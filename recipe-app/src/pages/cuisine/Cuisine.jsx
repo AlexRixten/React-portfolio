@@ -7,6 +7,7 @@ import { fetchCuisine } from "../../api/apiRecipe";
 
 import styles from "../../static/css/pages/Pages.module.css";
 import { CardItem } from "../../components/cardItem/CardItem";
+import { Spinner } from "../../components/spinner/Spinner";
 
 export const Cuisine = () => {
   const { type } = useParams();
@@ -18,11 +19,7 @@ export const Cuisine = () => {
     }
   );
   if (isSuccess && cuisine.results.length === 0) {
-    return (
-      <div className={styles.wrapper}>
-        <h1 className={styles.title}>Страница пуста</h1>
-      </div>
-    );
+    return <Spinner />;
   }
 
   return (
