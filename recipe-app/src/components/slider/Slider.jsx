@@ -2,7 +2,8 @@ import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
-import styles from "./Slider.module.css";
+import styles from "../../static/css/components/Slider.module.css";
+import { SlideItem } from "../slideItem/SlideItem";
 
 export const Slider = ({ title, data, perPage, gap }) => {
   return (
@@ -20,15 +21,7 @@ export const Slider = ({ title, data, perPage, gap }) => {
         >
           {data?.map((recipe) => (
             <SplideSlide key={recipe.id}>
-              <div className={styles.card} key={recipe.id}>
-                <p className={styles.title}>{recipe.title}</p>
-                <img
-                  className={styles.image}
-                  src={recipe.image}
-                  alt={recipe.title}
-                />
-                <div className={styles.gradient}></div>
-              </div>
+              <SlideItem recipe={recipe} />
             </SplideSlide>
           ))}
         </Splide>
