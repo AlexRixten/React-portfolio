@@ -1,4 +1,0 @@
-.wrapper{
-    @apply grid sm:grid-cols-[repeat(auto-fit,_minmax(20rem,_1fr))] grid-cols-[repeat(auto-fit,_minmax(13rem,_1fr))];
-    grid-gap: 2rem;
-}
