@@ -1,10 +1,10 @@
 import { FaPizzaSlice, FaHamburger } from "react-icons/fa";
 import { GiNoodles, GiChopsticks } from "react-icons/gi";
 
-import { Home } from "../pages/home/Home";
-import { Cuisine } from "../pages/cuisine/Cuisine";
-import { Searched } from "../pages/searched/Searched";
-import { Recipe } from "../pages/recipe/Recipe";
+import { Home } from "../pages/Home";
+import { Cuisine } from "../pages/Cuisine";
+import { Searched } from "../pages/Searched";
+import { Recipe } from "../pages/Recipe";
 
 export const ROUTES_CATEGORY = [
   {

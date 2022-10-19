@@ -3,11 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 
-import { fetchCuisine } from "../../api/apiRecipe";
+import { fetchCuisine } from "../api/apiRecipe";
 
-import styles from "../../static/css/pages/Pages.module.css";
-import { CardItem } from "../../components/cardItem/CardItem";
-import { Spinner } from "../../components/spinner/Spinner";
+import styles from "../static/css/pages/Pages.module.css";
+import { CardItem } from "../components/cardItem/CardItem";
+import { Spinner } from "../components/spinner/Spinner";
 
 export const Cuisine = () => {
   const { type } = useParams();
@@ -25,11 +25,17 @@ export const Cuisine = () => {
   return (
     <>
       {isSuccess && (
-        <div className={styles.wrapper}>
+        <motion.div 
+          className={styles.wrapper}
+          animate={{opacity: 1}}
+          initial={{opacity: 0}}
+          exit={{opacity: 0}}
+          transition={{duration: 0.5}}
+        >
           {cuisine.results.map((item) => (
             <CardItem key={item.id} item={item} />
           ))}
-        </div>
+        </motion.div>
       )}
     </>
   );

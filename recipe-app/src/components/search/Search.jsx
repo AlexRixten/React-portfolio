@@ -1,11 +1,9 @@
 import React from "react";
 import { useFormik } from "formik";
-import { queryClient } from "../../index.js";
-
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import styles from "../../static/css/components/Search.module.css";
-import { useNavigate } from "react-router-dom";
 
 export const Search = () => {
   const navigate = useNavigate();

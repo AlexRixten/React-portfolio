@@ -1,12 +1,12 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { searchRecipe } from "../../api/apiRecipe";
+import { searchRecipe } from "../api/apiRecipe";
 
-import { CardItem } from "../../components/cardItem/CardItem";
+import { CardItem } from "../components/cardItem/CardItem";
 
-import styles from "../../static/css/pages/Pages.module.css";
-import { Spinner } from "../../components/spinner/Spinner";
+import styles from "../static/css/pages/Pages.module.css";
+import { Spinner } from "../components/spinner/Spinner";
 
 export const Searched = () => {
   const { searchName } = useParams();
