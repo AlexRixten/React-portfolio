@@ -1,4 +1,5 @@
 import React from "react";
+import { useStateContext } from "./contexts/ContextProvider";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
@@ -8,7 +9,7 @@ import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Ka
 import "./App.css";
 
 export const App = () => {
-  const activeMenu = true;
+  const {activeMenu} = useStateContext();
   return (
     <div>
       <BrowserRouter>
