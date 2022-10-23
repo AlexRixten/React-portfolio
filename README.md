@@ -1,6 +1,6 @@
 # React-portfolio
 
-Contact-manager
-Recipe-app
-My-site-react
-Dashboard-app
+#Contact-manager
+#Recipe-app
+#My-site-react
+#Dashboard-app
