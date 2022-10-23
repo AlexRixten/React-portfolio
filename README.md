@@ -1,9 +1,9 @@
 # React-portfolio
 
-#Contact-manager
+Contact-manager
 
-#Recipe-app
+Recipe-app
 
-#My-site-react
+My-site-react
 
-#Dashboard-app
+Dashboard-app
