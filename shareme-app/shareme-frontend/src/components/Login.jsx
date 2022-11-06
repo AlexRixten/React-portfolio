@@ -24,13 +24,13 @@ export const Login = () => {
         .join("")
     );
 
-    const { name, sub, image } = JSON.parse(jsonPayload);
+    const { name, sub, picture } = JSON.parse(jsonPayload);
     console.log(JSON.parse(jsonPayload));
     const doc = {
       _id: sub,
       _type: "user",
       userName: name,
-      image: image,
+      image: picture,
     };
     console.log(doc);
     client.createIfNotExists(doc).then(() => {
