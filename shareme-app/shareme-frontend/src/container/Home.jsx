@@ -4,13 +4,16 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { Link, Route, Routes } from "react-router-dom";
 
 import { Sidebar, UserProfile } from "../components";
+import { Pins } from "./Pins";
+import { client  } from "../client";
+import logo from '../assets/logo.png'
 
 export const Home = () => {
   return (
-    <div>
+    <div className="flex bg-gray-50 md:flex-col ">
       Home
       <Sidebar />
       <UserProfile />
-    </div>
+    </div> 
   );
 };
