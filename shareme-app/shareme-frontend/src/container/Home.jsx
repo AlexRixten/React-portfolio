@@ -42,7 +42,7 @@ export const Home = () => {
             <AiFillCloseCircle fontSize={30} className="cursor-pointer" onClick={() => setToggleSidebar(false)} />
           </div>
         </div>
-      ) : null}
+      ) : null }
     </div>
   );
 };
