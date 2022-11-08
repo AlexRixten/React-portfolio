@@ -10,8 +10,6 @@ import { client } from "../client";
 export const Login = () => {
   const navigate = useNavigate();
   const responseGoogle = (response) => {
-    console.log(response);
-    localStorage.setItem("user", JSON.stringify(response.credential));
 
     var base64Url = response.credential.split(".")[1];
     var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -25,7 +23,8 @@ export const Login = () => {
     );
 
     const { name, sub, picture } = JSON.parse(jsonPayload);
-    console.log(JSON.parse(jsonPayload));
+
+    localStorage.setItem("user", JSON.stringify(jsonPayload));
     const doc = {
       _id: sub,
       _type: "user",
