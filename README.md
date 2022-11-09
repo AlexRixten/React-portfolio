@@ -7,3 +7,5 @@ Recipe-app
 My-site-react
 
 Dashboard-app
+
+Social-app
