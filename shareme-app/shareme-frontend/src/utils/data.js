@@ -166,7 +166,7 @@ export const searchQuery = (searchTerm) => {
 };
 
 export const userQuery = (userId) => {
-  console.log(userId);
+  // console.log(userId);
   const query = `*[_type == "user" && _id == '${userId}']`;
   return query;
 };
@@ -219,22 +219,4 @@ export const userSavedPinsQuery = (userId) => {
       },
     }`;
   return query;
-};
-
-export const parser = (str) => {
-  let rgxp = /([\S]*)\s?=\s?(\d*)/g,
-    result = {},
-    substr = "",
-    keys = "",
-    parent = "";
-  while ((substr = rgxp.exec(str))) {
-    substr = substr[0].split("=");
-    keys = substr[0].trim().split(".");
-    parent = result;
-    for (let i = 0, ln = keys.length; i < ln; i++) {
-      parent[keys[i]] = parent[keys[i]] || {};
-      i === ln - 1 ? (parent[keys[i]] = substr[1].trim()) : (parent = parent[keys[i]]);
-    }
-  }
-  return result;
 };

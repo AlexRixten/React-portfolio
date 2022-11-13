@@ -22,9 +22,8 @@ export const Login = () => {
         .join("")
     );
 
-    const { name, sub, picture } = JSON.parse(jsonPayload);
 
-    localStorage.setItem("user", JSON.stringify(jsonPayload));
+    const { name, sub, picture } = JSON.parse(jsonPayload);
     const doc = {
       _id: sub,
       _type: "user",
@@ -32,6 +31,9 @@ export const Login = () => {
       image: picture,
     };
     console.log(doc);
+
+    localStorage.setItem("user", JSON.stringify(doc));
+    
     client.createIfNotExists(doc).then(() => {
       navigate("/", { replace: true });
     });
