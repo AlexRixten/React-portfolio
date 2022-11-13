@@ -16,6 +16,7 @@ export const Sidebar = ({ user, closeToggle }) => {
       closeToggle(false);
     }
   };
+  console.log('categories', categories)
   return (
     <div className="flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar">
       <div className="flex flex-col">
@@ -27,7 +28,7 @@ export const Sidebar = ({ user, closeToggle }) => {
             <RiHomeFill /> Home
           </NavLink>
           <h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover categories</h3>
-          {categories.slice(0, categories.length - 1).map((category) => (
+          {categories.sort((a, b) => a.name > b.name ? 1 : -1).map((category) => (
             <NavLink
               to={`/category/${category.name}`}
               className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}

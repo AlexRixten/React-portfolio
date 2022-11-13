@@ -51,6 +51,10 @@ export const categories = [
     name: "others",
     image: "https://i.pinimg.com/236x/2e/63/c8/2e63c82dfd49aca8dccf9de3f57e8588.jpg",
   },
+  {
+    name: "games",
+    image: "https://s3-us-east-2.amazonaws.com/maryville/wp-content/uploads/2021/03/04131433/MVU-BFADM-2020-Q4-Skyscraper-Future-of-Video-Games-Trends-Technology-Types-header-v2-1000x523.jpg",
+  },
 ];
 
 export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
