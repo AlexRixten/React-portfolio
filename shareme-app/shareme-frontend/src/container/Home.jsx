@@ -18,11 +18,9 @@ export const Home = () => {
     localStorage.getItem("user") !== "undefined" ? JSON.parse(localStorage.getItem("user")) : localStorage.clear();
 
   useEffect(() => {
-    console.log(userInfo);
     const query = userQuery(userInfo?._id);
 
     client.fetch(query).then((data) => {
-      console.log(data);
       setUser(data[0]);
     });
   }, []);
