@@ -8,4 +8,4 @@ My-site-react
 
 Dashboard-app
 
-Shareme-app!
+Shareme-app
