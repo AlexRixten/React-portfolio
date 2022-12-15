@@ -1,24 +1,27 @@
 import React, { FormEvent, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { v4 as uuidV4 } from "uuid";
 import { Button, Col, Form, Row, Stack } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import CreatetableReactSelect from "react-select/creatable";
+import CreatableReactSelect from "react-select/creatable";
 import { NoteFormProps, Tag } from "./types";
 
-export const NoteForm = ({ onSubmit }: NoteFormProps) => {
+export const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit({
       title: titleRef.current!.value,
       markdown: markdownRef.current!.value,
-      tags: [],
+      tags: selectedTags,
     });
+    navigate("..");
   };
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Stack gap={4}>
         <Row>
           <Col>
@@ -30,11 +33,18 @@ export const NoteForm = ({ onSubmit }: NoteFormProps) => {
           <Col>
             <Form.Group controlId="tag">
               <Form.Label>Tag</Form.Label>
-              <CreatetableReactSelect
+              <CreatableReactSelect
+                onCreateOption={(label) => {
+                  const newTag = { id: uuidV4(), label };
+                  onAddTag(newTag);
+                  setSelectedTags((prev) => [...prev, newTag]);
+                }}
                 value={selectedTags.map((tag) => {
                   return { label: tag.label, value: tag.id };
                 })}
-                isMulti
+                options={availableTags.map((tag) => {
+                  return { label: tag.label, value: tag.id };
+                })}
                 onChange={(tags) => {
                   setSelectedTags(
                     tags.map((tag) => {
@@ -42,6 +52,7 @@ export const NoteForm = ({ onSubmit }: NoteFormProps) => {
                     })
                   );
                 }}
+                isMulti
               />
             </Form.Group>
           </Col>
