@@ -6,6 +6,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { NewNote } from "./NewNote";
 import { NoteData, RawNote, Tag } from "./types";
+import { NoteList } from "./NoteList";
 
 function App() {
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES ", []);
@@ -31,7 +32,7 @@ function App() {
   return (
     <Container className="my-4">
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/" element={<NoteList notes={notesWidthTags} availableTags={tags} />} />
         <Route path="/new" element={<NewNote onSubmit={onCreateNote} onAddTag={onAddTag} availableTags={tags}/>} />
         <Route path="/:id">
           <Route index element={<h1>Show</h1>} />
