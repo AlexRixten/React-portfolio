@@ -27,10 +27,15 @@ export type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
-};
+} & Partial<NoteData>;
 
 export type NewNoteProps = {
   onSubmit: (data: NoteData) => void;
+  onAddTag: (tag: Tag) => void;
+  availableTags: Tag[];
+};
+export type EditNoteProps = {
+  onSubmit: (id: string, data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
 };
@@ -38,10 +43,27 @@ export type NewNoteProps = {
 export type NoteListProps = {
   availableTags: Tag[];
   notes: Note[];
+  onDeleteTag: (id: string) => void;
+  onUpdateTag: (id: string, label: string) => void;
 };
 
 export type SimpifiedNote = {
   id: string;
   title: string;
   tags: Tag[];
+};
+
+export type NoteLayoutProps = {
+  notes: Note[];
+};
+export type NoteProps = {
+  onDelete: (id: string) => void;
+};
+
+export type EditTagsModalProps = {
+  availableTags: Tag[];
+  handleClose: () => void;
+  show: boolean;
+  onDeleteTag: (id: string) => void;
+  onUpdateTag: (id: string, label: string) => void;
 };

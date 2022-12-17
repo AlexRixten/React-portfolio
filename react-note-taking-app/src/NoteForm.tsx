@@ -5,10 +5,17 @@ import { Button, Col, Form, Row, Stack } from "react-bootstrap";
 import CreatableReactSelect from "react-select/creatable";
 import { NoteFormProps, Tag } from "./types";
 
-export const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
+export const NoteForm = ({
+  onSubmit,
+  onAddTag,
+  availableTags,
+  title = "",
+  markdown = "",
+  tags = [],
+}: NoteFormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
   const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent) => {
@@ -27,7 +34,7 @@ export const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) =
           <Col>
             <Form.Group controlId="title">
               <Form.Label>Title</Form.Label>
-              <Form.Control ref={titleRef} required />
+              <Form.Control ref={titleRef} required defaultValue={title} />
             </Form.Group>
           </Col>
           <Col>
@@ -61,7 +68,13 @@ export const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) =
           <Col>
             <Form.Group controlId="markdown">
               <Form.Label>Body</Form.Label>
-              <Form.Control ref={markdownRef} required as="textarea" rows={15} />
+              <Form.Control
+                ref={markdownRef}
+                required
+                as="textarea"
+                rows={15}
+                defaultValue={markdown}
+              />
             </Form.Group>
           </Col>
         </Row>
