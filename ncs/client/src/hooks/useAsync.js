@@ -27,8 +27,8 @@ const useAcyncInternal = (func, dependencies = [], initialLoading = false) => {
         setError(undefined);
         return data;
       })
-      .catch((erorr) => {
-        setError(erorr);
+      .catch((error) => {
+        setError(error);
         setValue(undefined);
         return Promise.reject(error);
       })
