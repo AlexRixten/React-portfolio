@@ -1,0 +1,23 @@
+import React from "react";
+import { getPosts } from "../services/posts";
+import { Link } from "react-router-dom";
+import { useAcync } from "../hooks/useAsync";
+
+export const PostList = () => {
+  const { loading, error, value: posts } = useAcync(getPosts);
+
+  if (loading) return <h1>Loading...</h1>;
+  if (error) return <h1 className="error-msg">{error}</h1>;
+
+  return (
+    <>
+      {posts.map((post) => {
+        return (
+          <h1 key={post.id}>
+            <Link to={`/post/${post.id}`}>{post.title}</Link>
+          </h1>
+        );
+      })}
+    </>
+  );
+};
