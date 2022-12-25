@@ -1,10 +1,10 @@
 import React from "react";
 import { getPosts } from "../services/posts";
 import { Link } from "react-router-dom";
-import { useAcync } from "../hooks/useAsync";
+import { useAsync } from "../hooks/useAsync";
 
 export const PostList = () => {
-  const { loading, error, value: posts } = useAcync(getPosts);
+  const { loading, error, value: posts } = useAsync(getPosts);
 
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1 className="error-msg">{error}</h1>;

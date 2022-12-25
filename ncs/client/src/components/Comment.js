@@ -3,15 +3,15 @@ import { FaEdit, FaHeart, FaRegHeart, FaReply, FaTrash } from "react-icons/fa";
 import { usePost } from "../contexts/PostContext";
 import { CommentList } from "./CommentList";
 import { useState } from "react";
-import { useAsyncFn } from "../hooks/useAsync";
-// import {
-//   createComment,
-//   deleteComment,
-//   toggleCommentLike,
-//   updateComment,
-// } from "../services/comments";
+import { useAsyncFn }from "../hooks/useAsync";
+import {
+  createComment,
+  deleteComment,
+  toggleCommentLike,
+  updateComment,
+} from "../services/comments";
 import { CommentForm } from "./CommentForm";
-// import { useUser } from "../hooks/useUser";
+import { useUser } from "../hooks/useUser"; 
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
   dateStyle: "medium",
@@ -20,7 +20,7 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
 
 export const Comment = ({ id, message, user, createdAt, likeCount, likedByMe }) => {
   const [areChildrenHidden, setAreChildrenHidden] = useState(false);
-  const [isReplying, setIsReplying] = useState(false);
+  const [isReplying, setIsReplying] = useState( );
   const [isEditing, setIsEditing] = useState(false);
   const {
     post,
@@ -30,40 +30,40 @@ export const Comment = ({ id, message, user, createdAt, likeCount, likedByMe }) 
     deleteLocalComment,
     toggleLocalCommentLike,
   } = usePost();
-  // const createCommentFn = useAsyncFn(createComment);
-  // const updateCommentFn = useAsyncFn(updateComment);
-  // const deleteCommentFn = useAsyncFn(deleteComment);
-  // const toggleCommentLikeFn = useAsyncFn(toggleCommentLike);
+  const createCommentFn = useAsyncFn(createComment);
+  const updateCommentFn = useAsyncFn(updateComment);
+  const deleteCommentFn = useAsyncFn(deleteComment);
+  const toggleCommentLikeFn = useAsyncFn(toggleCommentLike);
   const childComments = getReplies(id);
-  // const currentUser = useUser();
+  const currentUser = useUser();
 
-  // function onCommentReply(message) {
-  //   return createCommentFn
-  //     .execute({ postId: post.id, message, parentId: id })
-  //     .then((comment) => {
-  //       setIsReplying(false);
-  //       createLocalComment(comment);
-  //     });
-  // }
+  function onCommentReply(message) {
+    return createCommentFn
+      .execute({ postId: post.id, message, parentId: id })
+      .then((comment) => {
+        setIsReplying(false);
+        createLocalComment(comment);
+      });
+  }
 
-  // function onCommentUpdate(message) {
-  //   return updateCommentFn.execute({ postId: post.id, message, id }).then((comment) => {
-  //     setIsEditing(false);
-  //     updateLocalComment(id, comment.message);
-  //   });
-  // }
+  function onCommentUpdate(message) {
+    return updateCommentFn.execute({ postId: post.id, message, id }).then((comment) => {
+      setIsEditing(false);
+      updateLocalComment(id, comment.message);
+    });
+  }
 
-  // function onCommentDelete() {
-  //   return deleteCommentFn
-  //     .execute({ postId: post.id, id })
-  //     .then((comment) => deleteLocalComment(comment.id));
-  // }
+  function onCommentDelete() {
+    return deleteCommentFn
+      .execute({ postId: post.id, id })
+      .then((comment) => deleteLocalComment(comment.id));
+  }
 
-  // function onToggleCommentLike() {
-  //   return toggleCommentLikeFn
-  //     .execute({ id, postId: post.id })
-  //     .then(({ addLike }) => toggleLocalCommentLike(id, addLike));
-  // }
+  function onToggleCommentLike() {
+    return toggleCommentLikeFn
+      .execute({ id, postId: post.id })
+      .then(({ addLike }) => toggleLocalCommentLike(id, addLike));
+  }
 
   return (
     <>
@@ -76,17 +76,17 @@ export const Comment = ({ id, message, user, createdAt, likeCount, likedByMe }) 
           <CommentForm
             autoFocus
             initialValue={message}
-            // onSubmit={onCommentUpdate}
-            // loading={updateCommentFn.loading}
-            // error={updateCommentFn.error}
+            onSubmit={onCommentUpdate}
+            loading={updateCommentFn.loading}
+            error={updateCommentFn.error}
           />
         ) : (
           <div className="message">{message}</div>
         )}
         <div className="footer">
           <IconBtn
-            // onClick={onToggleCommentLike}
-            // disabled={toggleCommentLikeFn.loading}
+            onClick={onToggleCommentLike}
+            disabled={toggleCommentLikeFn.loading}
             Icon={likedByMe ? FaHeart : FaRegHeart}
             aria-label={likedByMe ? "Unlike" : "Like"}
           >
@@ -98,7 +98,7 @@ export const Comment = ({ id, message, user, createdAt, likeCount, likedByMe }) 
             Icon={FaReply}
             aria-label={isReplying ? "Cancel Reply" : "Reply"}
           />
-          {/* {user.id === currentUser.id && (
+          {user.id === currentUser.id && (
             <>
               <IconBtn
                 onClick={() => setIsEditing((prev) => !prev)}
@@ -114,19 +114,19 @@ export const Comment = ({ id, message, user, createdAt, likeCount, likedByMe }) 
                 color="danger"
               />
             </>
-          )} */}
+          )}
         </div>
-        {/* {deleteCommentFn.error && (
+        {deleteCommentFn.error && (
           <div className="error-msg mt-1">{deleteCommentFn.error}</div>
-        )} */}
+        )}
       </div>
       {isReplying && (
         <div className="mt-1 ml-3">
           <CommentForm
             autoFocus
-            // onSubmit={onCommentReply}
-            // loading={createCommentFn.loading}
-            // error={createCommentFn.error}
+            onSubmit={onCommentReply}
+            loading={createCommentFn.loading}
+            error={createCommentFn.error}
           />
         </div>
       )}

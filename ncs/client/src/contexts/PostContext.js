@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { useAcync } from "../hooks/useAsync";
+import { useAsync } from "../hooks/useAsync";
 import { getPost } from "../services/posts";
 
 const Context = React.createContext();
@@ -11,8 +11,9 @@ export const usePost = () => {
 
 export const PostProvider = ({ children }) => {
   const { id } = useParams();
-  const { loading, error, value: post } = useAcync(() => getPost(id), [id]);
+  const { loading, error, value: post } = useAsync(() => getPost(id), [id]);
   const [comments, setComments] = useState([]);
+
   const commentsByParentId = useMemo(() => {
     const group = {};
     comments.forEach((comment) => {
@@ -31,12 +32,64 @@ export const PostProvider = ({ children }) => {
     return commentsByParentId[parentId];
   }
 
+  const createLocalComment = (comments) => {
+    setComments((prevComments) => {
+      return [comments, ...prevComments];
+    });
+  };
+
+  const updateLocalComment = (id, message) => {
+    setComments((prevComments) => {
+      return prevComments.map((comment) => {
+        if (comment.id === id) {
+          return { ...comment, message };
+        } else {
+          return comment;
+        }
+      });
+    });
+  };
+
+  const deleteLocalComment = (id) => {
+    setComments((prevComments) => {
+      return prevComments.filter((comment) => comment.id !== id);
+    });
+  };
+
+  const toggleLocalCommentLike = (id, addLike) => {
+    setComments((prevComments) => {
+      return prevComments.map((comment) => {
+        if (id === comment.id) {
+          if (addLike) {
+            return {
+              ...comment,
+              likeCount: comment.likeCount + 1,
+              likedByMe: true,
+            };
+          } else {
+            return {
+              ...comment,
+              likeCount: comment.likeCount - 1,
+              likedByMe: false,
+            };
+          }
+        } else {
+          return comment;
+        }
+      });
+    });
+  };
+
   return (
     <Context.Provider
       value={{
         post: { id, ...post },
-        getReplies,
         rootComments: commentsByParentId[null],
+        getReplies,
+        createLocalComment,
+        updateLocalComment,
+        deleteLocalComment,
+        toggleLocalCommentLike,
       }}
     >
       {loading ? (

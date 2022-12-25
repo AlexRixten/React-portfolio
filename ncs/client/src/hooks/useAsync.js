@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
-export const useAcync = (func, dependencies = []) => {
-  const { execute, ...state } = useAcyncInternal(func, dependencies, true);
+export const useAsync = (func, dependencies = []) => {
+  const { execute, ...state } = useAsyncInternal(func, dependencies, true);
 
   useEffect(() => {
     execute();
@@ -10,11 +10,11 @@ export const useAcync = (func, dependencies = []) => {
   return state;
 };
 
-export const useAcyncFn = (func, dependencies = []) => {
-  return useAcyncInternal(func, dependencies, false);
+export const useAsyncFn = (func, dependencies = []) => {
+  return useAsyncInternal(func, dependencies, false);
 };
 
-const useAcyncInternal = (func, dependencies = [], initialLoading = false) => {
+const useAsyncInternal = (func, dependencies = [], initialLoading = false) => {
   const [loading, setLoading] = useState(initialLoading);
   const [error, setError] = useState();
   const [value, setValue] = useState();
