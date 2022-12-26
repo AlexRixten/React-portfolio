@@ -10,6 +10,6 @@ Dashboard-app
 
 Shareme-app!
 
-Note-app!
+Note-app
 
 NCS
