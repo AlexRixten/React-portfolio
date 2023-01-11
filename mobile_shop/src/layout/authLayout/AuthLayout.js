@@ -15,28 +15,28 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { CopyRight } from "../../components/CopyRight";
 import { useStyles } from "../../hooks/useStyles";
+import { useForm } from "react-hook-form";
 
 export const AuthLayout = () => {
   const dispatch = useDispatch();
 
-  const loginHandler = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
     dispatch(logIn());
   };
+
   const classes = useStyles();
 
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid container justifyContent="center" className={classes.image}>
-        <Grid
-          item
-          xs={12}
-          sm={8}
-          md={5}
-          component={Paper}
-          elevation={6}
-          square
-        >
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Grid className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
@@ -44,39 +44,39 @@ export const AuthLayout = () => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 variant="outlined"
                 margin="normal"
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
-                autoComplete="email"
                 autoFocus
+                {...register("email", { required: true })}
               />
               <TextField
                 variant="outlined"
                 margin="normal"
-                required
                 fullWidth
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                {...register("password", { required: true })}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
+                {...register("remember", { required: true })}
               />
               <Button
                 fullWidth
                 variant="contained"
                 color="primary"
+                type="input"
                 className={classes.submit}
-                onClick={loginHandler}
+                // onClick={loginHandler}
               >
                 Sign In
               </Button>
