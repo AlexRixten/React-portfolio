@@ -1,21 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
-import { authSelector, logIn, logOut } from "./store/auth/authSlice";
+import { useSelector } from "react-redux";
+import { AuthLayout } from "./layout/authLayout/AuthLayout";
+import { MainLayout } from "./layout/mainLayout/MainLayout";
+import { authSelector } from "./store/auth/authSlice";
 
 function App() {
-  const {isAuth} = useSelector(authSelector)
-  const dispacth = useDispatch()
+  const { isAuth } = useSelector(authSelector);
 
-  const loginHandler = () => {
-    dispacth(logIn())
-  }
-  const logoutHandler = () => {
-    dispacth(logOut())
-  }
-   return (
+  return (
     <>
-    <p>{isAuth ? 'true' : 'false'}</p>
-      <button onClick={loginHandler}>Login</button>
-      <button onClick={logoutHandler}>Logout</button>
+      <div>{isAuth ? <MainLayout /> : <AuthLayout />}</div>
     </>
   );
 }
